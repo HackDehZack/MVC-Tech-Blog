@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "seed": "sequelize db:seed:all"
-
   },
   "author": "",
   "license": "ISC",
@@ -21,5 +20,8 @@
     "express-session": "^1.18.0",
     "mysql2": "^3.9.1",
     "sequelize": "^6.36.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
   }
 }
