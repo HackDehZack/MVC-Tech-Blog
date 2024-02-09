@@ -1,0 +1,25 @@
+<section>
+    <h1 class="title is-3" style= "color:rgb(141, 245, 146)">Your Posts</h1>
+    {{#each posts as |post|}}
+    <div class="card dashboard-content">
+        <a href="/blog/{{id}}">
+            <header class="post-title title is-5">{{post.title}}</header>
+            <div class="card-content">
+                <p class="your-post">{{post.post}}</p>
+        </a>
+        <button class="button delete-button dashboard-button" onClick="window.location.reload();" 
+        type="submit" data-blogId={{post.id}}>Delete post</button>
+         <a href="blog/update/{{id}}">
+        <button class="button update-button dashboard-button" onClick="window.location.reload();"
+         type="submit" data-blogId={{post.id}}>Update post</button>
+        </a>
+    </div>
+    </div>
+    {{/each}}
+    <div>
+        <a href="blog/add">
+            <button id="new-post" class="button" type="submit">New Post</button>
+        </a>
+    </div>
+</section>
+<script src="/public/js/deletePost.js"></script>

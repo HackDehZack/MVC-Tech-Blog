@@ -1,0 +1,16 @@
+<h1 class="title is-5" style="color:rgb(75, 230, 121)"> Add Comment</h1>
+<div class="card comment-section">
+    <h2 class="title is-6">{{blog.title}}</h2>
+    <div class="card-content">
+        <ul class="comment-post">{{blog.post}}</ul>
+        {{#each blog.comments as |comment|}}
+        <li class="comment-list">{{comment.comment_post}} - {{comment.user.name}}</li>
+        {{/each}}
+    </div>
+    <div class="control">
+        <h3 class="comment-title">Comment</h3>
+        <textarea id="blog-comment" class="textarea" placeholder="Blog Post"></textarea>
+    </div>
+    <button id="add-comment" class="button" onClick="window.location.reload();" type="submit"  data-blogId={{blog.id}}>Add Comment</button>
+</div>
+<script src="/public/js/comment.js"></script> 
