@@ -6,7 +6,6 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-
 // Import routes
 const routes = require('./controller');
 
@@ -24,20 +23,20 @@ const hbs = exphbs.create({});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// Add middleware to parse JSON and urlencoded data
+// Add middleware to parse JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the public directory
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up session middleware
 const sess = {
-    secret: 'Super secret secret',
+    secret: process.env.SESSION_SECRET || 'Super secret secret', // It's better to keep secrets out of the code
     cookie: {
         maxAge: 60 * 60 * 1000, // 1 hour
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === 'production', // In production, set secure to true to send cookie over HTTPS
         sameSite: 'strict',
     },
     resave: false,
@@ -46,12 +45,18 @@ const sess = {
         db: sequelize,
     }),
 };
+
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1); // Trust first proxy
+    sess.cookie.secure = true; // Serve secure cookies, requires HTTPS
+}
+
 app.use(session(sess));
 
 // Use the routes
 app.use(routes);
 
-// Sync the sequelize models and then start the server
+// Sync sequelize models and then start the server
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server running on: http://localhost:${PORT}`);
