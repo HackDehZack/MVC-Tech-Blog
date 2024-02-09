@@ -1,71 +1,73 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-
-
-
-// Get all users
-router.get('/', async (req, res) => {
+router.get('/', async (req, res)=>{
   try {
-    const users = await User.findAll();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ message: 'Unable to retrieve users', error: err });
+    const getUsers = await User.findAll()
+    res.json(getUsers)
+  }
+  catch (err){
+    console.log(err)
   }
 });
-
-
-
-// Create a new user and set up a session
 router.post('/', async (req, res) => {
   try {
-    const newUser = await User.create(req.body);
+    const userData = await User.create({
+      name: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+    });
+
     req.session.save(() => {
-      req.session.userId = newUser.id;
+      req.session.userId = userData.id;
       req.session.loggedIn = true;
-      res.status(201).json(newUser);
+
+      res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(400).json({ message: 'Unable to create user', error: err });
+    res.status(400).json(err);
   }
 });
 
-
-// User login
 router.post('/login', async (req, res) => {
   try {
-    const user = await User.findOne({ where: { email: req.body.email } });
-    if (!user) {
-      return res.status(400).json({ message: 'Incorrect email or password' });
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
 
-    const isValidPassword = await user.checkPassword(req.body.password);
-    if (!isValidPassword) {
-      return res.status(400).json({ message: 'Incorrect email or password' });
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
 
     req.session.save(() => {
-      req.session.userId = user.id;
+      req.session.userId = userData.id;
       req.session.loggedIn = true;
-      res.json({ message: 'You are now logged in!', user });
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
+
   } catch (err) {
-    res.status(400).json({ message: 'Unable to login', error: err });
+    res.status(400).json(err);
   }
 });
 
-// User logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
-    req.session.destroy(err => {
-      if (err) {
-        res.status(400).json({ message: 'Unable to logout', error: err });
-      } else {
-        res.status(204).end();
-      }
+    req.session.destroy(() => {
+      res.status(204).end();
     });
   } else {
-    res.status(404).json({ message: 'No session found' });
+    res.status(404).end();
   }
 });
 
