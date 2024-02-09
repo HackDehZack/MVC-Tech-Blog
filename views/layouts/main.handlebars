@@ -1,52 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MVC Tech Blog</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-   <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 
 <body>
-    <section class="hero is-dark">
-        <div class="hero-head">
-            <nav class="navbar has-background-dark" role="navigation" aria-label="main navigation">
-               <div class="container">
-                  <div class="navbar-brand">
-                     <h1 class="web-header title">Tech blog for tech, tech, tech! 
-                         <p class="descriptive-text">Blah blah, tech, tech, tech!</p>
-                    </h1>
-                       <span class="navbar-burger" aria-label="menu" data-target="navbarMenuHeroA">
-                           <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                  </div>
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end">
-                         <a class="navbar-item has-text-white-bis has-background-dark" href="/">Home</a>
-                         <a class="navbar-item has-text-white-bis has-background-dark" href="/dashboard">
-                                Dashboard
-                            </a>
-                            {{#if loggedIn}}
-               <button class="navbar-item button has-background-grey-light" id="logout">Logout</button>
-                            {{else}}
-                            <a class="navbar-item" href="/login">
-                                Log In
-                            </a>
-                            {{/if}}
-                        </div>
+    <header>
+        <nav class="navbar has-background-dark" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a id="web-header" class="title is-size-3" href="/" aria-label="Blog Home">
+                        The MVC Blog!
+                        <p id="descriptive-text" class="subtitle is-size-2">The best there is! (Kinda) </p>
+                    </a>
+                    <!-- Burger for mobile menu -->
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item has-text-white-bis" href="/">Home</a>
+                        <a class="navbar-item has-text-white-bis" href="/dashboard">Dashboard</a>
+                        {{#if loggedIn}}
+                        <button class="navbar-item button is-light is-primary" id="logout">Logout</button>
+                        {{else}}
+                        <a class="navbar-item" href="/login">Log In</a>
+                        {{/if}}
                     </div>
                 </div>
-            </nav>
-        </div>
-    </section>
-    <div class="container is-justify-content-center">
-        {{{body}}}
+            </div>
+        </nav>
+    </header>
 
-    </div>
+    <main class="container mt-5">
+        {{{body}}}
+    </main>
+
+    <footer class="footer has-background-dark">
+        <div class="content has-text-centered has-text-white-bis">
+            <p>&copy; 2024 MVC Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbarBurger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('#navbarMenu');
+            navbarBurger.onclick = () => {
+                navbarBurger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            };
+        });
+    </script>
+
+    <!-- Conditionally load logout script if user is logged in -->
     {{#if loggedIn}}
     <script src="./js/logout.js"></script>
     {{/if}}

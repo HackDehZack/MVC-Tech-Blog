@@ -1,138 +1,131 @@
 :root {
-    --dark-purple: #5a189a;  /* A modern shade of dark purple */
-    --light-green: #a8e6cf;  /* A soft light green for contrast */
-    --medium-green: #70c1b3; /* A medium green for buttons and highlights */
-    --deep-purple: #3c096c;  /* A deeper purple for hover states and accents */
-    --grey: #757575;         /* A neutral grey, kept for consistency */
-}
-
-html {
-    background-image: url('/images/background-tech.avif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    --dark: rgb(0, 0, 0);  /* Define a custom CSS variable for dark color */
+    --light: rgba(255, 242, 242, 0.863);  /* Define a custom CSS variable for light color */
+    --grey: rgb(117, 62, 62);  /* Define a custom CSS variable for grey color */
 }
 
 .descriptive-text {
-    font-size: medium;
-    padding-top: 20px;
+    font-size: medium;  /* Set the font size of elements with class "descriptive-text" to medium */
+    padding-top: 20px;  /* Add 20 pixels of padding to the top of elements with class "descriptive-text" */
 }
 
 #logout {
-    margin-top: 20px;
-    color: var(--dark-purple);
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.blog-text,
-.comment-post,
-.comment-title,
-.your-post {
-    color: var(--dark-purple);
-    font-weight: bold;
-}
-
-.blog-text:hover {
-    color: var(--medium-green);
-}
-
-.blog-card,
-.dashboard-content {
-    padding: 20px;
-    margin: 10px;
-    border: double 10px var(--medium-green);
-    border-radius: 10px;
-    opacity: 0.95;
-    background-color: var(--light-green);
-}
-
-#new-post,
-.dashboard-button,
-#add-comment,
-#add-blog,
-#update-blog {
-    padding: 20px;
-    font-weight: bold;
-    background-color: var(--medium-green);
-    color: var(--light-green);
-    border: none;
-}
-
-#new-post,
-#add-blog,
-#update-blog {
-    font-size: larger;
-}
-
-.your-post,
-#blog-title,
-#blog-post {
-    margin-bottom: 20px;
-}
-
-.comment-section {
-    padding: 20px;
-    opacity: 0.9;
-    background-color: var(--light-green);
-}
-
-.comment-list {
-    list-style-type: disc;
-    font-weight: bold;
-    color: var(--grey);
-}
-
-.panel-block {
-   background-color: var(--light-green);
-   font-family: 'Courier New', Courier, monospace;
-   font-weight: bold;
-}
-
-.btn-primary {
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    background-color: var(--deep-purple);
-    color: var(--light-green);
-    border: none;
+    margin-top: 20px;  /* Add 20 pixels of margin to the top of the element with id "logout" */
+    color: var(--dark);  /* Set the text color of the element with id "logout" to the value of the custom CSS variable "--dark" */
 }
 
 .btn-primary:hover {
-    background-color: var(--dark-purple);
+    color: var(--light);  /* Change the text color of elements with class "btn-primary" to the value of the custom CSS variable "--light" when hovered */
+    background-color: var(--blue);  /* Change the background color of elements with class "btn-primary" to the value of the custom CSS variable "--blue" when hovered */
 }
 
-/* Mobile responsiveness */
-@media only screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
+.container {
+    justify-content: center;  /* Center the content horizontally within elements with class "container" */
+    align-items: center;  /* Center the content vertically within elements with class "container" */
+}
 
-    .blog-card,
-    .dashboard-content,
-    .comment-section {
-        margin: 5px;
-        padding: 10px;
-        border-width: 5px;
-        font-size: small;
-    }
+.blog-text {
+    color: var(--dark);  /* Set the text color of elements with class "blog-text" to the value of the custom CSS variable "--dark" */
+    font-weight:bold;  /* Set the font weight of elements with class "blog-text" to bold */
+}
 
-    #new-post,
-    .dashboard-button,
-    #add-comment,
-    #add-blog,
-    #update-blog {
-        padding: 10px;
-        font-size: small;
-    }
+.blog-text:hover{
+    color:var(--grey);  /* Change the text color of elements with class "blog-text" to the value of the custom CSS variable "--grey" when hovered */
+}
 
-    .your-post,
-    #blog-title,
-    #blog-post {
-        margin-bottom: 10px;
-    }
+.blog-card {
+    padding: 20px;  /* Add 20 pixels of padding to elements with class "blog-card" */
+    margin: 10px;  /* Add 10 pixels of margin to elements with class "blog-card" */
+    border-style:double;  /* Set the border style of elements with class "blog-card" to double */
+    border-width:10px;  /* Set the border width of elements with class "blog-card" to 10 pixels */
+    border-color: var(--grey);  /* Set the border color of elements with class "blog-card" to the value of the custom CSS variable "--grey" */
+    border-radius: 10px;  /* Set the border radius of elements with class "blog-card" to 10 pixels */
+    opacity: 0.95;  /* Set the opacity of elements with class "blog-card" to 0.95 */
+}
+
+#new-post {
+    padding: 30px;  /* Add 30 pixels of padding to the element with id "new-post" */
+    font-weight:bold;  /* Set the font weight of the element with id "new-post" to bold */
+    font-size: larger;  /* Set the font size of the element with id "new-post" to larger */
+}
+
+.dashboard-content{
+    margin: 20px;  /* Add 20 pixels of margin to elements with class "dashboard-content" */
+    padding: 10px;  /* Add 10 pixels of padding to elements with class "dashboard-content" */
+    border-style:double;  /* Set the border style of elements with class "dashboard-content" to double */
+    border-width:10px;  /* Set the border width of elements with class "dashboard-content" to 10 pixels */
+    border-color: var(--blue);  /* Set the border color of elements with class "dashboard-content" to the value of the custom CSS variable "--blue" */
+    border-radius: 10px;  /* Set the border radius of elements with class "dashboard-content" to 10 pixels */
+}
+
+.dashboard-button{
+    padding: 20px;  /* Add 20 pixels of padding to elements with class "dashboard-button" */
+    font-weight:bold;  /* Set the font weight of elements with class "dashboard-button" to bold */
+}
+
+.your-post{
+    margin-bottom: 20px;  /* Add 20 pixels of margin to the bottom of elements with class "your-post" */
+    font-weight:bold;  /* Set the font weight of elements with class "your-post" to bold */
+    color: var(--dark);  /* Set the text color of elements with class "your-post" to the value of the custom CSS variable "--dark" */
+}
+
+.comment-section{
+    padding:20px;  /* Add 20 pixels of padding to elements with class "comment-section" */
+    opacity:0.9;  /* Set the opacity of elements with class "comment-section" to 0.9 */
+}
+
+.comment-post{
+    color: var(--dark);  /* Set the text color of elements with class "comment-post" to the value of the custom CSS variable "--dark" */
+    font-weight:bold;  /* Set the font weight of elements with class "comment-post" to bold */
+    color: var(--dark);  /* Set the text color of elements with class "comment-post" to the value of the custom CSS variable "--dark" */
+}
+
+.comment-title{
+    color: var(--dark);  /* Set the text color of elements with class "comment-title" to the value of the custom CSS variable "--dark" */
+    font-weight:bold;  /* Set the font weight of elements with class "comment-title" to bold */
+}
+
+#add-comment{
+    padding: 20px;  /* Add 20 pixels of padding to the element with id "add-comment" */
+    font-weight:bold;  /* Set the font weight of the element with id "add-comment" to bold */
+}
+
+.comment-list{
+    list-style-type:disc;  /* Set the list style type of elements with class "comment-list" to disc */
+    font-weight:bold;  /* Set the font weight of elements with class "comment-list" to bold */
+    color: var(--grey);  /* Set the text color of elements with class "comment-list" to the value of the custom CSS variable "--grey" */
+}
+
+#blog-title{
+    margin-bottom:10px;  /* Add 10 pixels of margin to the bottom of the element with id "blog-title" */
+}
+
+#blog-post{
+    margin-bottom:10px;  /* Add 10 pixels of margin to the bottom of the element with id "blog-post" */
+}
+
+#add-blog{
+    padding: 20px;  /* Add 20 pixels of padding to the element with id "add-blog" */
+    font-weight:bold;  /* Set the font weight of the element with id "add-blog" to bold */
+}
+
+#update-blog{
+    padding: 20px;  /* Add 20 pixels of padding to the element with id "update-blog" */
+    font-weight:bold;  /* Set the font weight of the element with id "update-blog" to bold */
+}
+
+.dashboard-content{
+    opacity: 0.9;  /* Set the opacity of elements with class "dashboard-content" to 0.9 */
+}
+
+.panel-block {
+   background-color:aliceblue;  /* Set the background color of elements with class "panel-block" to aliceblue */
+   font-family: 'Courier New', Courier, monospace;  /* Set the font family of elements with class "panel-block" to 'Courier New', Courier, monospace */
+   font-weight: bold;  /* Set the font weight of elements with class "panel-block" to bold */
+}
+
+.btn-primary {
+    padding:10px;  /* Add 10 pixels of padding to elements with class "btn-primary" */
+    border-radius: 10px;  /* Set the border radius of elements with class "btn-primary" to 10 pixels */
+    font-weight: bold;  /* Set the font weight of elements with class "btn-primary" to bold */
 }
