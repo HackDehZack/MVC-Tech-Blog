@@ -1,0 +1,137 @@
+:root {
+    --dark-purple: #5a189a;  /* A modern shade of dark purple */
+    --light-green: #a8e6cf;  /* A soft light green for contrast */
+    --medium-green: #70c1b3; /* A medium green for buttons and highlights */
+    --deep-purple: #3c096c;  /* A deeper purple for hover states and accents */
+    --grey: #757575;         /* A neutral grey, kept for consistency */
+}
+
+html {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.descriptive-text {
+    font-size: medium;
+    padding-top: 20px;
+}
+
+#logout {
+    margin-top: 20px;
+    color: var(--dark-purple);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-text,
+.comment-post,
+.comment-title,
+.your-post {
+    color: var(--dark-purple);
+    font-weight: bold;
+}
+
+.blog-text:hover {
+    color: var(--medium-green);
+}
+
+.blog-card,
+.dashboard-content {
+    padding: 20px;
+    margin: 10px;
+    border: double 10px var(--medium-green);
+    border-radius: 10px;
+    opacity: 0.95;
+    background-color: var(--light-green);
+}
+
+#new-post,
+.dashboard-button,
+#add-comment,
+#add-blog,
+#update-blog {
+    padding: 20px;
+    font-weight: bold;
+    background-color: var(--medium-green);
+    color: var(--light-green);
+    border: none;
+}
+
+#new-post,
+#add-blog,
+#update-blog {
+    font-size: larger;
+}
+
+.your-post,
+#blog-title,
+#blog-post {
+    margin-bottom: 20px;
+}
+
+.comment-section {
+    padding: 20px;
+    opacity: 0.9;
+    background-color: var(--light-green);
+}
+
+.comment-list {
+    list-style-type: disc;
+    font-weight: bold;
+    color: var(--grey);
+}
+
+.panel-block {
+   background-color: var(--light-green);
+   font-family: 'Courier New', Courier, monospace;
+   font-weight: bold;
+}
+
+.btn-primary {
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: var(--deep-purple);
+    color: var(--light-green);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-purple);
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .blog-card,
+    .dashboard-content,
+    .comment-section {
+        margin: 5px;
+        padding: 10px;
+        border-width: 5px;
+        font-size: small;
+    }
+
+    #new-post,
+    .dashboard-button,
+    #add-comment,
+    #add-blog,
+    #update-blog {
+        padding: 10px;
+        font-size: small;
+    }
+
+    .your-post,
+    #blog-title,
+    #blog-post {
+        margin-bottom: 10px;
+    }
+}
