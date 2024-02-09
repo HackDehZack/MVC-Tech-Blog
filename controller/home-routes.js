@@ -2,7 +2,6 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Blog, Comment } = require('../models');
 const withAuth = require('../utils/auth');
-//refer to above if linking is wrong, making routes before adding them so don't forget zack :(
 // Route to get all blogs for the homepage
 router.get('/', async (req, res) => {
     try {
