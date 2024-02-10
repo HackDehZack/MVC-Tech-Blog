@@ -34,7 +34,8 @@ const signupUser= async (event) => {
     if (res.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to sign up.');
+      const errorData = await res.json();
+      alert(`Failed to sign up: ${errorData.message}`);
     }
   }
 };

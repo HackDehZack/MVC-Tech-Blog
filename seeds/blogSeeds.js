@@ -7,6 +7,7 @@ const blogPosts= [
         for developing user interfaces that divides the program logic into three
         interconnected elements`, 
         user_id: 1,
+        blog_id: 1,
        
     }, 
     {
@@ -14,6 +15,7 @@ const blogPosts= [
         post: `Object Relational Mapping (ORM) is a programming technique for converting data between 
         incompatible type systems using object-oriented programming languages, unless you're my grandma.`, 
        user_id: 2,
+       blog_id: 2,
     }
 ];
 
