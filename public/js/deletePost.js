@@ -6,7 +6,7 @@ const deletePost = async (blogId) => {
         headers: { 'Content-Type': 'application/json' }
     })
     if (response.ok) {
-        alert("Post successfull deleted!");
+        alert("Post successfully deleted!");
     } else {
         alert('Error occurred, failed to delete post')
     }
@@ -17,6 +17,5 @@ for (let i = 0; i < deleteBtn.length; i++) {
         const blogId = deleteBtn[i].dataset.blogid;
         deletePost(blogId)
     }
-
     )
 }
