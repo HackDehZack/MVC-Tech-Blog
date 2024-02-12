@@ -1,26 +1,32 @@
-const submit = document.getElementById('add-comment');
+const submitButton = document.getElementById('add-comment');
 
-const addComment = async ()=> {
-const comment = document.getElementById('blog-comment');
-const addCommentBtn = document.getElementById('add-comment');
-const blogId = addCommentBtn.dataset.blogid;
+const addComment = async () => {
+    const commentField = document.getElementById('blog-comment');
+    const blogId = submitButton.dataset.blogid;
 
-if (comment) {
-
-    const response = await fetch (`/api/post/${blogId}`, {
-        method: 'POST',
-        body: JSON.stringify({
-            comment: comment.value
-        }), 
-        headers: {'Content-Type': 'application/json'}
-    })
-    if (response.ok){
-        alert("Comment has been successfully added to this post!");
-        location.reload();
+    if (commentField.value) {
+        try {
+            const response = await fetch(`/api/post/${blogId}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    comment: commentField.value
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (response.ok) {
+                alert("Comment has been successfully added to this post!");
+                location.reload();
+            } else {
+                const errorData = await response.json();
+                alert(`Failed to add comment: ${errorData.message}`);
+            }
+        } catch (error) {
+            console.error('Error occurred:', error);
+            alert('Error occurred, failed to add comment');
+        }
     } else {
-        alert('Error occurred, failed to add comment')
+        alert('Please enter a comment before submitting.');
     }
-}
-}
+};
 
-submit.addEventListener('click', (addComment))
+submitButton.addEventListener('click', addComment);
