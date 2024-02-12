@@ -13,16 +13,21 @@ const addComment = async () => {
                 }),
                 headers: { 'Content-Type': 'application/json' }
             });
-            if (response.ok) {
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            try {
+                const responseData = await response.json();
                 alert("Comment has been successfully added to this post!");
                 location.reload();
-            } else {
-                const errorData = await response.json();
-                alert(`Failed to add comment: ${errorData.message}`);
+            } catch (e) {
+                alert('The server did not return a JSON response.');
             }
-        } catch (error) {
-            console.error('Error occurred:', error);
-            alert('Error occurred, failed to add comment');
+        } catch (e) {
+            console.error('Error occurred:', e);
+            alert('Error occurred, failed to add comment. Check the console for more information.');
         }
     } else {
         alert('Please enter a comment before submitting.');
