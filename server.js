@@ -58,9 +58,8 @@ app.use(routes);
 
 // Sync sequelize models and then start the server
 sequelize.sync({ force: false }).then(() => {
-    const port = process.env.PORT || 3000; // In case the PORT env variable is not set, fallback to 3000
-    app.listen(port, () => {
-        console.log(`Server running on: http://localhost:${port}`);
+    app.listen(process.env.PORT || PORT, () => {
+        console.log(`Server running on: http://localhost:${process.env.PORT || PORT}`);
         console.log('Create an account to start your blog!');
     });
 });
