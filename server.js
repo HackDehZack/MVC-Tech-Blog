@@ -12,11 +12,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({});
 const sess = {
-  secret: 'Super secret secret',        cookie: {   
-           maxAge: 60 * 60 * 1000,
-         httpOnly: true,
-         secure: false,
-        sameSite: 'strict',
+  secret: 'Super secret secret',
+  cookie: {   
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
   },
   resave: false,
   saveUninitialized: true,
@@ -24,13 +25,11 @@ const sess = {
     db: sequelize,
   }),
 };
-
-
 app.use(session(sess));
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

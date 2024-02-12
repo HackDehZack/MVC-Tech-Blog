@@ -1,5 +1,10 @@
 const submit = document.getElementById('add-blog');
 
+/**
+ * Adds a new blog post to the forum.
+ * @param {Event} event - The event object triggered by the form submission.
+ * @returns {Promise<void>} - A promise that resolves when the post is successfully added.
+ */
 const addPost = async (event) => {
     event.preventDefault();
 

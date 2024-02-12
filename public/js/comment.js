@@ -1,37 +1,31 @@
-const submitButton = document.getElementById('add-comment');
+const submit = document.getElementById('add-comment');
 
-const addComment = async () => {
-    const commentField = document.getElementById('blog-comment');
-    const blogId = submitButton.dataset.blogid;
+/**
+ * Adds a comment to a blog post.
+ * @async
+ * @function addComment
+ * @returns {Promise<void>}
+ */
+const addComment = async ()=> {
+const comment = document.getElementById('blog-comment');
+const addCommentBtn = document.getElementById('add-comment');
+const blogId = addCommentBtn.dataset.blogid;
 
-    if (commentField.value) {
-        try {
-            const response = await fetch(`/api/post/${blogId}`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    comment: commentField.value
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            });
+if (comment) {
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            try {
-                const responseData = await response.json();
-                alert("Comment has been successfully added to this post!");
-                location.reload();
-            } catch (e) {
-                alert('The server did not return a JSON response.');
-            }
-        } catch (e) {
-            console.error('Error occurred:', e);
-            alert('Error occurred, failed to add comment. Check the console for more information.');
-        }
+    const response = await fetch (`/api/post/${blogId}`, {
+        method: 'POST',
+        body: JSON.stringify({
+            comment: comment.value
+        }), 
+        headers: {'Content-Type': 'application/json'}
+    })
+    if (response.ok){
+        alert("Comment has been successfully added to this post!");
+        location.reload();
     } else {
-        alert('Please enter a comment before submitting.');
+        alert('Error occurred, failed to add comment')
     }
-};
-
-submitButton.addEventListener('click', addComment);
+}
+}
+submit.addEventListener('click', (addComment))

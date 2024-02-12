@@ -1,5 +1,10 @@
 const deleteBtn = document.querySelectorAll('.delete-button');
 
+/**
+ * Deletes a post from the server.
+ * @param {number} blogId - The ID of the post to be deleted.
+ * @returns {Promise<void>} - A promise that resolves when the post is successfully deleted.
+ */
 const deletePost = async (blogId) => {
     const response = await fetch(`api/post/${blogId}`, {
         method: 'DELETE',

@@ -1,65 +1,73 @@
 const { Blog, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 const router = require('express').Router();
-
-// Create a new blog post
+//ADD blog Post
 router.post('/', withAuth, async (req, res) => {
     try {
-        const newPost = await Blog.create({
+        const dbPostData = await Blog.create({
             user_id: req.session.userId,
             title: req.body.title,
             post: req.body.post,
         });
-        res.status(200).json(newPost);
+        console.log(dbPostData);
+        res.status(200).json(dbPostData);
     } catch (err) {
-        res.status(500).json({ message: 'Failed to create post', error: err });
+        console.log(err);
+        res.status(500).json(err);
     }
 });
-
-// Delete a blog post
+//Delete blog post
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const result = await Blog.destroy({ where: { id: req.params.id } });
-        if (result > 0) res.status(200).json({ message: 'Post deleted' });
-        else res.status(404).json({ message: 'No post found with id' });
+        await Blog.destroy({
+            where: {
+                id: req.params.id,
+            }
+        })
+        return res.status(200).end()
     } catch (err) {
-        res.status(500).json({ message: 'No please dont kill me!!!', error: err });
+        console.log(err)
+        res.status(500).json(err)
     }
 });
-
-// Update a blog post
+//UPDATE blog post
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        const updatedPost = await Blog.update(req.body, { where: { id: req.params.id } });
-        if (updatedPost > 0) res.status(200).json({ message: 'Post updated' });
-        else res.status(404).json({ message: 'No post found with this id' });
+        const dbPostData = await Blog.update(req.body, {
+            where: {
+                id: req.params.id,
+            }
+        })
+        return res.status(200).json(dbPostData)
     } catch (err) {
-        res.status(500).json({ message: 'Failed to update post', error: err });
+        console.log(err)
+        res.status(500).json(err)
     }
 });
-
-// Add a comment to a post
-router.post('/:id/comment', withAuth, async (req, res) => {
+//ADD comment on post
+router.post('/:id', withAuth, async (req, res) => {
     try {
-        const newComment = await Comment.create({
+        const dbComment = await Comment.create({
             blog_id: req.params.id,
             user_id: req.session.userId,
             comment_post: req.body.comment
-        });
-        res.status(200).json(newComment);
-    } catch (err) {
-        res.status(500).json({ message: 'Failed to add comment', error: err });
-    }
-});
+        })
+        return res.status(200).json(dbComment)
 
-// Get comments for a post
-router.get('/:id/comments', withAuth, async (req, res) => {
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+router.get('/:id/comment', withAuth, async (req, res) => {
     try {
-        const comments = await Comment.findAll({ where: { blog_id: req.params.id } });
-        res.status(200).json(comments);
-    } catch (err) {
-        res.status(500).json({ message: 'Failed to get comments', error: err });
-    }
-});
+        const dbComment = await Comment.findAll({
 
+        })
+        return res.status(200).json(dbComment)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
 module.exports = router;

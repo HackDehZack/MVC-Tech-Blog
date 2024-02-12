@@ -17,6 +17,21 @@ const loginUser = async (event)=> {
       }
   }
 };
+/**
+ * Function to handle user signup.
+ * @param {Event} event - The event object.
+ * @returns {Promise<void>} - A promise that resolves when the signup process is complete.
+ */
+/**
+ * Function to handle user signup.
+ * @param {Event} event - The event object.
+ * @returns {Promise<void>} - A promise that resolves when the signup process is complete.
+ */
+/**
+ * Function to handle user signup.
+ * @param {Event} event - The event object.
+ * @returns {Promise<void>} - A promise that resolves when the signup process is complete.
+ */
 const signupUser= async (event) => {
   event.preventDefault();
 
@@ -34,12 +49,10 @@ const signupUser= async (event) => {
     if (res.ok) {
       document.location.replace('/');
     } else {
-      const errorData = await res.json();
-      alert(`Failed to sign up: ${errorData.message}`);
+      alert('Failed to sign up.');
     }
   }
 };
-
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginUser);
