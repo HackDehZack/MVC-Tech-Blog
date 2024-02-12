@@ -1,4 +1,5 @@
-#MVC Tech Blog  
+  #MVC Tech Blog#
+
 A CMS-style blog site built from scratch to allow developers to publish their blog posts and engage with the community. This application follows the Model-View-Controller (MVC) architectural pattern, leverages Handlebars.js for views, Sequelize as the ORM, and express-session for authentication, and is deployed to Heroku.
 
 
