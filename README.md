@@ -2,6 +2,15 @@
 
 A CMS-style blog site built from scratch to allow developers to publish their blog posts and engage with the community. This application follows the Model-View-Controller (MVC) architectural pattern, leverages Handlebars.js for views, Sequelize as the ORM, and express-session for authentication, and is deployed to Heroku.
 
+## Screenshot
+
+![techblog](https://github.com/HackDehZack/MVC-Tech-Blog/assets/140559436/7865e778-2428-449c-bef5-ca1c3ba4d8bd)
+
+
+## Link to Deployed Application
+
+https://hackdehzackmvctechblog-3cc73bad9f7c.herokuapp.com/ 
+
 ## Getting Started
 
 To run this application, your environment should meet the following requirements:
@@ -52,13 +61,6 @@ This application is deployed to Heroku. Follow these steps to deploy:
 4. Deploy your branch to Heroku using `git push heroku main`.
 5. Open the deployed application with `heroku open`.
 
-## Screenshot
-
-[Insert screenshot of application here]
-
-## Link to Deployed Application
-
-[Insert live URL here]
 
 ## Support
 
