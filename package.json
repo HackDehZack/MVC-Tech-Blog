@@ -8,7 +8,7 @@
     "start": "node server.js",
     "seed": "node seeds/index.js",
     "postinstall": "npm rebuild"
-},
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -20,6 +20,7 @@
     "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
     "mysql2": "^3.9.1",
+    "nvm": "^0.0.4",
     "sequelize": "^6.36.0"
   },
   "devDependencies": {
